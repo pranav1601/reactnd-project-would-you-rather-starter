@@ -4,22 +4,14 @@ export function formatDate (timestamp) {
   return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString()
 }
 
-export function formatTweet (tweet, author, authedUser, parentTweet) {
-  const { id, likes, replies, text, timestamp } = tweet
-  const { name, avatarURL } = author
+export function formatQuestion (tweet) {
+  const { id, author,timestamp ,optionOne,optionTwo} = tweet
 
   return {
-    name,
+    author,
     id,
     timestamp,
-    text,
-    avatar: avatarURL,
-    likes: likes.length,
-    replies: replies.length,
-    hasLiked: likes.includes(authedUser),
-    parent: !parentTweet ? null : {
-      author: parentTweet.author,
-      id: parentTweet.id,
-    }
+    optionOne,
+    optionTwo
   }
 }
