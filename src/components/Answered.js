@@ -4,7 +4,7 @@ import { formatQuestion, formatDate } from '../utils/helpers'
 import {Link,withRouter} from 'react-router-dom'
 
 
-class Question extends Component{
+class Answered extends Component{
     
 
     render(){
@@ -17,6 +17,9 @@ class Question extends Component{
             optionOne,
             optionTwo
         }=question
+        const votesOne=optionOne.votes.length
+        const votesTwo=optionTwo.votes.length
+        const totalVotes=votesOne+votesTwo   
 
         return(
             <div className='tweet'>
@@ -33,9 +36,14 @@ class Question extends Component{
                     </div>
                 </div>
                 <div className="center" style={{flexDirection:"column"}}>
-                <input type="radio" value={optionOne.text}/>{optionOne.text}
-                <p style={{color:"red", fontWeight:"bold"}}>OR</p>
-                <input type="radio" value={optionTwo.text}/>{optionTwo.text}
+                    <div style={{border:"solid #000000",borderWidth:"thick",borderColor:"green"}}>
+                        <p style={{fontSize:"15px", alignItems:"left", padding:"5px"}}>Selected:</p>
+                        <p style={{padding:"10px"}}>{optionOne.text}</p>
+                        <p>{Math.round((votesOne/totalVotes)*100)}%, {votesOne} out of {totalVotes}</p>    
+                    </div>
+                    <p style={{color:"red", fontWeight:"bold"}}>OR</p>
+                    <p>{optionTwo.text}</p>
+                    <p>{Math.round((votesTwo/totalVotes)*100)}%, {votesTwo} out of {totalVotes}</p> 
                 </div>
                 
             </div>
@@ -54,4 +62,4 @@ function mapStateToProps({authUser,users,questions},{id}){
 
 }
 
-export default connect(mapStateToProps)(Question)
+export default connect(mapStateToProps)(Answered)
