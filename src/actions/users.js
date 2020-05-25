@@ -1,8 +1,37 @@
+
+import { saveQuestionAnswer } from '../utils/api';
+import { addAnswerToQuestion } from '../actions/questions';
+
 export const RECEIVE_USERS='RECEIVE_USERS'
+export const ADD_ANSWER_TO_USER = 'ADD_ANSWER_TO_USER';
 
 export function receiveUsers(users){
     return {
         type:RECEIVE_USERS,
         users,
     }
+}
+
+
+
+function addAnswerToUser(authUser, qid, answer) {
+  return {
+    type: ADD_ANSWER_TO_USER,
+    authUser,
+    qid,
+    answer
+  };
+}
+
+export function handleSaveQuestionAnswer(authUser,qid, answer) {
+  return (dispatch) => {
+    
+    
+
+    saveQuestionAnswer({authUser, qid, answer}).then((question)=>
+    {
+    dispatch(addAnswerToUser(authUser, qid, answer));
+    dispatch(addAnswerToQuestion(authUser, qid, answer));}
+    )
+  };
 }

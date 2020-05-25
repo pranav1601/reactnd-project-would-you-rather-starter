@@ -4,7 +4,7 @@ import {receiveQuestions} from '../actions/questions'
 import {setAuthedUser} from '../actions/authUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-const AUTHED_ID='tylermcginnis'
+const AUTHED_ID='johndoe'
 
 export function handleInitialData(){
     return (dispatch)=>{

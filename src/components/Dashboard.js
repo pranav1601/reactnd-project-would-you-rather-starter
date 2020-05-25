@@ -11,7 +11,7 @@ class Dashboard extends Component{
                 <ul className='dashboard-list'>
                 {this.props.questionIds.map((id)=>(
                         <li key={id}>
-                            <div><Answered id={id}/></div>
+                            <div><Question id={id}/></div>
                         </li>
                     ))}
                 </ul>

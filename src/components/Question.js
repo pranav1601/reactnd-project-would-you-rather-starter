@@ -1,12 +1,28 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/helpers'
+import { handleSaveQuestionAnswer } from '../actions/users'
 import {Link,withRouter} from 'react-router-dom'
 
 
 class Question extends Component{
-    
-
+    state={
+        selectedOption:''
+    }
+    onSubmitAnswer=(e)=>{
+        e.preventDefault()
+        // console.log('selected',this.state.selectedOption)
+        const {dispatch,id,authUser}=this.props
+        if(this.state.selectedOption!==''){
+            dispatch(handleSaveQuestionAnswer(authUser,id,this.state.selectedOption))
+        }
+        
+    }
+    onChangeAnswer=(e)=>{
+        this.setState({
+            selectedOption: e.target.value
+          });
+    }
     render(){
         const {question}=this.props
         
@@ -20,7 +36,6 @@ class Question extends Component{
 
         return(
             <div className='tweet'>
-                {console.log(this.props.user.avatarURL)}
                 <img
                 src='https://w7.pngwing.com/pngs/931/256/png-transparent-bitstrips-avatar-emoji-graphy-emoticon-avatar-face-heroes-photography.png'
                 alt={`Avatar of ${author}`}
@@ -33,9 +48,23 @@ class Question extends Component{
                     </div>
                 </div>
                 <div className="center" style={{flexDirection:"column"}}>
-                <input type="radio" value={optionOne.text}/>{optionOne.text}
-                <p style={{color:"red", fontWeight:"bold"}}>OR</p>
-                <input type="radio" value={optionTwo.text}/>{optionTwo.text}
+                    <form onSubmit={this.onSubmitAnswer}>
+                        <label>
+                            <input type="radio" 
+                                value="optionOne"
+                                checked={this.state.selectedOption==="optionOne"}
+                                onChange={this.onChangeAnswer}/>{optionOne.text}
+                        </label>
+                        <p style={{color:"red", fontWeight:"bold"}}>OR</p>
+                        <label>
+                            <input 
+                                type="radio" 
+                                value="optionTwo"
+                                checked={this.state.selectedOption==="optionTwo"}
+                                onChange={this.onChangeAnswer}/>{optionTwo.text}
+                        </label>
+                        <button type="submit">Submit Option</button>
+                    </form>
                 </div>
                 
             </div>
