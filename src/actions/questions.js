@@ -1,4 +1,3 @@
-import {saveQuestionAnswer} from '../utils/api'
 import { saveQuestion } from '../utils/api';
 import { addQuestionToUser } from '../actions/users';
 

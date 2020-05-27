@@ -10,13 +10,13 @@ class Leaderboard extends Component{
                 
                 {this.props.leaderboardUser.map(element => {
                     return(
-                      <div className='question'>
+                      <div key={element.id} className='question'>
                         <img
                         src={element.avatarURL}
                         alt={`Avatar of ${element.name}`}
                         className='avatar'
                         />
-                      <li className="center" key={element.id} style={{fontSize:'large',fontWeight:"bold"}}>
+                      <li className="center"  style={{fontSize:'large',fontWeight:"bold"}}>
                         <p>{element.name}</p>
                         <p>Answered: {element.answerCount}</p>
                         <p>Questions: {element.questionCount}</p>

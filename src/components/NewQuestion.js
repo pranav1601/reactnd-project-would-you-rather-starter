@@ -6,18 +6,15 @@ import {Redirect} from 'react-router-dom'
 class NewQuestion extends Component{
     state={
         validSubmit: false,
-        isLoading: false,
         optionOne:'',
         optionTwo:''
     }
     onQuestionSubmit=(e)=>{
-        console.log(e)
         e.preventDefault()
-        const { authUser, handleSaveQuestion,dispatch} = this.props;
+        const { authUser, handleSaveQuestion} = this.props;
         const { optionOne, optionTwo } = this.state;
 
         new Promise((res, rej) => {
-        this.setState({ isLoading: true });
         handleSaveQuestion(optionOne, optionTwo, authUser)
         setTimeout(() => res('success'), 1000);
         }).then(() => {
@@ -29,14 +26,12 @@ class NewQuestion extends Component{
         });
     }
     onOptionChangeOne=(e)=>{
-        console.log(e.target.name)
         const value=e.target.value
         this.setState(()=>({
             optionOne:value
         }))
     }
     onOptionChangeTwo=(e)=>{
-        console.log(e.target.name)
         const value=e.target.value
         this.setState(()=>({
             optionTwo:value

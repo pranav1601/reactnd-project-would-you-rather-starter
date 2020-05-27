@@ -1,7 +1,6 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/helpers'
-import { handleSaveQuestionAnswer } from '../actions/users'
 import {Link,withRouter} from 'react-router-dom'
 
 
@@ -10,11 +9,9 @@ class DemoQuestion extends Component{
         const {question,user}=this.props
         
         const{
-            author,
             id,
             timestamp,
-            optionOne,
-            optionTwo
+            optionOne
         }=question
 
         return(

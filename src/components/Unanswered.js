@@ -2,7 +2,6 @@ import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/helpers'
 import { handleSaveQuestionAnswer } from '../actions/users'
-import {Link,withRouter} from 'react-router-dom'
 
 
 class Unanswered extends Component{
@@ -11,7 +10,6 @@ class Unanswered extends Component{
     }
     onSubmitAnswer=(e)=>{
         e.preventDefault()
-        // console.log('selected',this.state.selectedOption)
         const {dispatch,id,authUser}=this.props
         if(this.state.selectedOption!==''){
             dispatch(handleSaveQuestionAnswer(authUser,id,this.state.selectedOption))
@@ -27,8 +25,6 @@ class Unanswered extends Component{
         const {question,user}=this.props
         
         const{
-            author,
-            id,
             timestamp,
             optionOne,
             optionTwo

@@ -1,7 +1,6 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/helpers'
-import {Link,withRouter} from 'react-router-dom'
 
 
 class Answered extends Component{
@@ -11,8 +10,6 @@ class Answered extends Component{
         const {question,optionOneSelected,optionTwoSelected,user}=this.props
         
         const{
-            author,
-            id,
             timestamp,
             optionOne,
             optionTwo

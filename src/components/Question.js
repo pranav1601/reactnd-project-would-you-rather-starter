@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import Unanswered from './Unanswered'
 import Answered from './Answered'
 import { Redirect } from 'react-router'
-import DemoQuestion from './DemoQuestion'
 
 class Question extends Component{
     render(){

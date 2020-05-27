@@ -26,9 +26,6 @@ function addAnswerToUser(authUser, qid, answer) {
 
 export function handleSaveQuestionAnswer(authUser,qid, answer) {
   return (dispatch) => {
-    
-    
-
     saveQuestionAnswer({authUser, qid, answer}).then((question)=>
     {
     dispatch(addAnswerToUser(authUser, qid, answer));

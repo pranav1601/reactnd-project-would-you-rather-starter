@@ -1,6 +1,5 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
-import Answered from './Answered'
 import DemoQuestion from './DemoQuestion'
 
 class Dashboard extends Component{
