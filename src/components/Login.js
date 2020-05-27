@@ -1,10 +1,11 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authUser'
+import { Link } from 'react-router-dom'
 
 class Login extends Component{
     state={
-        authUser:''
+        authUser:'sarahedo'
     }
     onChange=(e)=>{
         const user=e.target.value
@@ -28,7 +29,7 @@ class Login extends Component{
                             <option key={user.id} value={user.id}>{user.name}</option>
                         ))}
                     </select>
-                    <button disabled={this.state.authUser===''}>Sign me in!</button>
+                    <Link to="/" onClick={this.signInSubmit} disabled={this.state.authUser===''}>Sign me in!</Link>
                 </form>
             </div>
         )

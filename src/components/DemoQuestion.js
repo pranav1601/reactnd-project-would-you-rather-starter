@@ -18,7 +18,7 @@ class DemoQuestion extends Component{
         }=question
 
         return(
-            <Link to={'/question/'+id} className='tweet'>
+            <Link to={'/questions/'+id} className='tweet'>
                 <img
                 src='https://w7.pngwing.com/pngs/931/256/png-transparent-bitstrips-avatar-emoji-graphy-emoticon-avatar-face-heroes-photography.png'
                 alt={`Avatar of ${author}`}
@@ -31,9 +31,8 @@ class DemoQuestion extends Component{
                     </div>
                 </div>
                 <div className="center" style={{flexDirection:"column"}}>
-                    <form onSubmit={this.onViewPoll}>
-                        {(optionOne.text.length>10?<p>...{optionOne.text.slice(0,10)}...</p>:<p>...{optionOne.text}...</p>)}
-                    </form>
+                    <h2>Would You Rather</h2>
+                    {(optionOne.text.length>10?<p>...{optionOne.text.slice(0,10)}...</p>:<p>...{optionOne.text}...</p>)}
                 </div>
                 
             </Link>

@@ -59,6 +59,7 @@ class NewQuestion extends Component{
                         onChange={this.onOptionChangeOne}
                         placeholder="Enter option one"/>
                     </label>
+                    <h3>OR</h3>
                     <label>
                     <textarea
                         name="optionTwo"

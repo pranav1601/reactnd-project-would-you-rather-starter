@@ -4,14 +4,18 @@ import {connect} from 'react-redux'
 
 class Leaderboard extends Component{
     render(){
-        console.log('hello',this.props.leaderboardUser)
         return(
             
             <div>
                 
                 {this.props.leaderboardUser.map(element => {
                     return(
-                    <p key={element.id}>{element.name}</p>)
+                      <li key={element.id}>
+                        <p>{element.name}</p>
+                        <p>{element.answerCount}</p>
+                        <p>{element.questionCount}</p>
+                      </li>
+                    )
                 })}
             </div>
         )

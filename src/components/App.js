@@ -1,5 +1,5 @@
 import React, { Component,Fragment } from 'react'
-import {BrowserRouter as Router, Route,Redirect} from 'react-router-dom'
+import {BrowserRouter as Router, Route,Redirect, Switch} from 'react-router-dom'
 import {handleInitialData} from '../actions/shared'
 import {connect} from 'react-redux'
 import Dashboard from './Dashboard'
@@ -10,6 +10,7 @@ import Login from './Login'
 import Nav from './Nav'
 import Unanswered from './Unanswered'
 import Question from './Question'
+import NotFound from './NotFound'
 
 
 class App extends Component {
@@ -20,21 +21,31 @@ class App extends Component {
     const {authUser}=this.props
     return (
       <div>
-        {(authUser===null)||(authUser==='')?
+        <Router>
+          
+            {(authUser===null)||(authUser==='')?
           <div>
+            {/* <Redirect to='/'/> */}
             <Login/>
           </div>
           :
-          <Router>
+            <Fragment>
             <Nav/>
             <div>
-              <Route path='/' exact component={Dashboard} />
-              <Route path='/question/:id' component={Question} />
-              <Route path='/new' component={NewQuestion} />
-              <Route path='/leaderboard' component={Leaderboard} />
+              <Switch>
+                <Route path='/' exact component={Dashboard} />
+                <Route path='/questions/:id' component={Question} />
+                <Route path='/add' component={NewQuestion} />
+                <Route path='/leaderboard' component={Leaderboard}/>
+                <Route path='/notfound' exact component={NotFound} />
+                <Route component={NotFound}/>
+              </Switch>
             </div>
+            </Fragment>
+            }
+          
+        
           </Router>
-          }
         
       </div>
       

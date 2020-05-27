@@ -37,6 +37,7 @@ class Answered extends Component{
                     </div>
                 </div>
                 <div className="center" style={{flexDirection:"column"}}>
+                    <h2>Would You Rather</h2>
                     <div className={optionOneSelected?'selected':null}>
                         {optionOneSelected && (<p style={{fontSize:"15px", alignItems:"left", padding:"5px"}}>Selected:</p>)}
                         

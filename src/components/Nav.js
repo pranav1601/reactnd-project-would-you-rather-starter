@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink,Redirect } from 'react-router-dom'
+import { NavLink,Redirect, Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authUser'
 
@@ -18,6 +18,7 @@ class Nav extends Component {
     if(this.state.authUser==='None'){
       return <Redirect to='/'/>
     }
+    const {authUser}=this.props
     return (
       
       <nav className='nav'>
@@ -28,7 +29,7 @@ class Nav extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/new' activeClassName='active'>
+            <NavLink to='/add' activeClassName='active'>
               New Question
             </NavLink>
           </li>
@@ -38,7 +39,10 @@ class Nav extends Component {
             </NavLink>
           </li>
           <li>
-            <button onClick={this.logout}>LOGOUT</button>
+            Hello, {authUser.name}
+          </li>
+          <li>
+            <Link to='/' onClick={this.logout}>LOGOUT</Link>
           </li>
         </ul>
       </nav>
@@ -46,5 +50,11 @@ class Nav extends Component {
   }
   }
 
-  export default connect()(Nav)
+  function mapStateToProps({authUser,users}){
+    return{
+      authUser:users[authUser]
+    }
+  }
+
+  export default connect(mapStateToProps)(Nav)
   

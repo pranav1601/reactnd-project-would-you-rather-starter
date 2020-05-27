@@ -48,6 +48,7 @@ class Unanswered extends Component{
                     </div>
                 </div>
                 <div className="center" style={{flexDirection:"column"}}>
+                    <h2>Would You Rather</h2>
                     <form onSubmit={this.onSubmitAnswer}>
                         <label>
                             <input type="radio" 

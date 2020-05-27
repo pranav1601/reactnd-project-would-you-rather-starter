@@ -2,15 +2,19 @@ import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import Unanswered from './Unanswered'
 import Answered from './Answered'
+import { Redirect } from 'react-router'
 
 class Question extends Component{
     render(){
         console.log(this.props)
-        const {id,answered}=this.props
+        const {question,id,answered}=this.props
         console.log(answered)
+        console.log('question',!question)
+        if(!question){
+            return <Redirect to='/notfound'/>
+        }
         return(
             <div>
-                hey!
                 {(answered===true)?
                     <Answered id={id}/>
                     :
@@ -20,10 +24,11 @@ class Question extends Component{
     }
 }
 
-function mapStateToProps({users,authUser},props){
+function mapStateToProps({users,authUser,questions},props){
     const {id}=props.match.params
     const answered=Object.keys(users[authUser].answers).includes(id)
     return{
+        question:questions[id],
         id,
         answered
     }
