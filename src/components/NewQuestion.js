@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { handleSaveQuestion } from '../actions/questions';
+import {Redirect} from 'react-router-dom'
 
 class NewQuestion extends Component{
     state={
@@ -42,7 +43,10 @@ class NewQuestion extends Component{
         }))
     }
     render(){
-        console.log(this.state)
+        const {validSubmit}=this.state
+        if(validSubmit===true){
+            return <Redirect to='/'/>
+        }
         return(
             <div className="center">
                 <h3>Would You rather</h3>

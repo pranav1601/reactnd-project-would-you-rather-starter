@@ -6,23 +6,6 @@ import {Link,withRouter} from 'react-router-dom'
 
 
 class DemoQuestion extends Component{
-    state={
-        selectedOption:''
-    }
-    onSubmitAnswer=(e)=>{
-        e.preventDefault()
-        // console.log('selected',this.state.selectedOption)
-        const {dispatch,id,authUser}=this.props
-        if(this.state.selectedOption!==''){
-            dispatch(handleSaveQuestionAnswer(authUser,id,this.state.selectedOption))
-        }
-        
-    }
-    onChangeAnswer=(e)=>{
-        this.setState({
-            selectedOption: e.target.value
-          });
-    }
     render(){
         const {question}=this.props
         
@@ -35,7 +18,7 @@ class DemoQuestion extends Component{
         }=question
 
         return(
-            <div className='tweet'>
+            <Link to={'/question/'+id} className='tweet'>
                 <img
                 src='https://w7.pngwing.com/pngs/931/256/png-transparent-bitstrips-avatar-emoji-graphy-emoticon-avatar-face-heroes-photography.png'
                 alt={`Avatar of ${author}`}
@@ -48,13 +31,12 @@ class DemoQuestion extends Component{
                     </div>
                 </div>
                 <div className="center" style={{flexDirection:"column"}}>
-                    <form onSubmit={this.onSubmitAnswer}>
-                    {(optionOne.text.length>10?<p>...{optionOne.text.slice(0,10)}...</p>:<p>...{optionOne.text}...</p>)}
-                        <button type="submit">View Poll</button>
+                    <form onSubmit={this.onViewPoll}>
+                        {(optionOne.text.length>10?<p>...{optionOne.text.slice(0,10)}...</p>:<p>...{optionOne.text}...</p>)}
                     </form>
                 </div>
                 
-            </div>
+            </Link>
         )
     }
 }
@@ -70,4 +52,4 @@ function mapStateToProps({authUser,users,questions},{id}){
 
 }
 
-export default connect(mapStateToProps)(DemoQuestion)
+export default withRouter(connect(mapStateToProps)(DemoQuestion))

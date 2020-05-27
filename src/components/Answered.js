@@ -8,7 +8,7 @@ class Answered extends Component{
     
 
     render(){
-        const {question}=this.props
+        const {question,optionOneSelected,optionTwoSelected}=this.props
         
         const{
             author,
@@ -20,10 +20,11 @@ class Answered extends Component{
         const votesOne=optionOne.votes.length
         const votesTwo=optionTwo.votes.length
         const totalVotes=votesOne+votesTwo   
-
+        console.log('hello1',optionOneSelected)
+        console.log('hello2',optionTwoSelected)
         return(
             <div className='tweet'>
-                {console.log(this.props.user.avatarURL)}
+                
                 <img
                 src='https://w7.pngwing.com/pngs/931/256/png-transparent-bitstrips-avatar-emoji-graphy-emoticon-avatar-face-heroes-photography.png'
                 alt={`Avatar of ${author}`}
@@ -36,14 +37,18 @@ class Answered extends Component{
                     </div>
                 </div>
                 <div className="center" style={{flexDirection:"column"}}>
-                    <div style={{border:"solid #000000",borderWidth:"thick",borderColor:"green"}}>
-                        <p style={{fontSize:"15px", alignItems:"left", padding:"5px"}}>Selected:</p>
+                    <div className={optionOneSelected?'selected':null}>
+                        {optionOneSelected && (<p style={{fontSize:"15px", alignItems:"left", padding:"5px"}}>Selected:</p>)}
+                        
                         <p style={{padding:"10px"}}>{optionOne.text}</p>
                         <p>{Math.round((votesOne/totalVotes)*100)}%, {votesOne} out of {totalVotes}</p>    
                     </div>
-                    <p style={{color:"red", fontWeight:"bold"}}>OR</p>
-                    <p>{optionTwo.text}</p>
-                    <p>{Math.round((votesTwo/totalVotes)*100)}%, {votesTwo} out of {totalVotes}</p> 
+                    <div className={optionTwoSelected?'selected':null}>
+                        {optionTwoSelected && (<p style={{fontSize:"15px", alignItems:"left", padding:"5px"}}>Selected:</p>)}
+                        <p style={{color:"red", fontWeight:"bold"}}>OR</p>
+                        <p>{optionTwo.text}</p>
+                        <p>{Math.round((votesTwo/totalVotes)*100)}%, {votesTwo} out of {totalVotes}</p> 
+                    </div>
                 </div>
                 
             </div>
@@ -53,11 +58,15 @@ class Answered extends Component{
 
 function mapStateToProps({authUser,users,questions},{id}){
     const question=questions[id]
+    const optionOneSelected=users[authUser].answers[id]==='optionOne'
+    const optionTwoSelected=users[authUser].answers[id]==='optionTwo'
 
     return{
         authUser,
         user:users[question.author],
-        question:question?formatQuestion(question):null
+        question:question?formatQuestion(question):null,
+        optionOneSelected,
+        optionTwoSelected
     }
 
 }
