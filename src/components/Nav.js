@@ -35,7 +35,7 @@ class Nav extends Component {
           </li>
           <li>
             <NavLink to='/leaderboard' activeClassName='active'>
-              leaderboard
+              Leaderboard
             </NavLink>
           </li>
           <li style={{color:"red",paddingLeft:"20px"}}>
