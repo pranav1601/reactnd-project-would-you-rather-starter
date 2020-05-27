@@ -25,7 +25,6 @@ class App extends Component {
           
             {(authUser===null)||(authUser==='')?
           <div>
-            {/* <Redirect to='/'/> */}
             <Login/>
           </div>
           :

@@ -21,15 +21,18 @@ class Login extends Component{
     render(){
         const {users}=this.props
         return(
-            <div>
+            <div className="center">
                 <h2>Select a user to sign in:</h2>
-                <form onSubmit={this.signInSubmit}>
-                    <select onChange={this.onChange} value={this.state.authUser}>
+                <form  onSubmit={this.signInSubmit}>
+                    <div>
+                    <select className="select-users" onChange={this.onChange} value={this.state.authUser}>
                         {users.map((user)=>(
                             <option key={user.id} value={user.id}>{user.name}</option>
                         ))}
                     </select>
-                    <Link to="/" onClick={this.signInSubmit} disabled={this.state.authUser===''}>Sign me in!</Link>
+                    </div>
+                    <br/>
+                    <Link to="/" className="btn" onClick={this.signInSubmit} disabled={this.state.authUser===''}>Sign me in!</Link>
                 </form>
             </div>
         )

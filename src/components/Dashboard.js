@@ -15,14 +15,14 @@ class Dashboard extends Component{
     }
     render(){
         const {answered,unanswered}=this.props.userQuestionData
-        console.log('asneweed',answered)
         return(
-            <div>
-
-                <h3 className='center'>Your timeline</h3>
+            <div  className='center'>
+                <h3>Your timeline</h3>
                 <button value="answered"
+                    className={this.state.questionView==='answered'?"selected-list":null}
                     onClick={this.onChange}>Answered Questions</button>
                 <button value="unanswered"
+                    className={this.state.questionView==='unanswered'?"selected-list":null}
                     onClick={this.onChange}>Unanswered Questions</button>
                 <ul className='dashboard-list'>
                     {(this.state.questionView==='answered')?

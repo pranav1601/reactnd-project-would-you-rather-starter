@@ -24,7 +24,7 @@ class Unanswered extends Component{
           });
     }
     render(){
-        const {question}=this.props
+        const {question,user}=this.props
         
         const{
             author,
@@ -35,36 +35,37 @@ class Unanswered extends Component{
         }=question
 
         return(
-            <div className='tweet'>
+            <div className='question'>
                 <img
-                src='https://w7.pngwing.com/pngs/931/256/png-transparent-bitstrips-avatar-emoji-graphy-emoticon-avatar-face-heroes-photography.png'
-                alt={`Avatar of ${author}`}
+                src={user.avatarURL}
+                alt={`Avatar of ${user.name}`}
                 className='avatar'
                 />
-                <div className='tweet-info'>
+                <div className='question-info'>
                     <div>
                         <div>{formatDate(timestamp)}</div>
-                        <span>{author} asks:</span>
+                        <span className="author">{user.name} asks:</span>
                     </div>
                 </div>
                 <div className="center" style={{flexDirection:"column"}}>
                     <h2>Would You Rather</h2>
-                    <form onSubmit={this.onSubmitAnswer}>
-                        <label>
+                    <form onSubmit={this.onSubmitAnswer} style={{flexDirection:"column"}}>
+                        <label style={{fontSize:"large"}}> 
                             <input type="radio" 
                                 value="optionOne"
                                 checked={this.state.selectedOption==="optionOne"}
                                 onChange={this.onChangeAnswer}/>{optionOne.text}
                         </label>
                         <p style={{color:"red", fontWeight:"bold"}}>OR</p>
-                        <label>
+                        <label style={{fontSize:"large"}}>
                             <input 
                                 type="radio" 
                                 value="optionTwo"
                                 checked={this.state.selectedOption==="optionTwo"}
                                 onChange={this.onChangeAnswer}/>{optionTwo.text}
                         </label>
-                        <button type="submit">Submit Option</button>
+                        <br/>
+                        <button className="btn" type="submit">Submit Option</button>
                     </form>
                 </div>
                 

@@ -7,7 +7,7 @@ import {Link,withRouter} from 'react-router-dom'
 
 class DemoQuestion extends Component{
     render(){
-        const {question}=this.props
+        const {question,user}=this.props
         
         const{
             author,
@@ -18,23 +18,22 @@ class DemoQuestion extends Component{
         }=question
 
         return(
-            <Link to={'/questions/'+id} className='tweet'>
+            <Link to={'/questions/'+id} className='question'>
                 <img
-                src='https://w7.pngwing.com/pngs/931/256/png-transparent-bitstrips-avatar-emoji-graphy-emoticon-avatar-face-heroes-photography.png'
-                alt={`Avatar of ${author}`}
+                src={user.avatarURL}
+                alt={`Avatar of ${user.name}`}
                 className='avatar'
                 />
-                <div className='tweet-info'>
+                <div className='question-info'>
                     <div>
                         <div>{formatDate(timestamp)}</div>
-                        <span>{author} asks:</span>
+                        <div className="author">{user.name} asks:</div>
                     </div>
                 </div>
-                <div className="center" style={{flexDirection:"column"}}>
+                <div style={{flexDirection:"column",fontSize:"large"}}>
                     <h2>Would You Rather</h2>
                     {(optionOne.text.length>10?<p>...{optionOne.text.slice(0,10)}...</p>:<p>...{optionOne.text}...</p>)}
                 </div>
-                
             </Link>
         )
     }

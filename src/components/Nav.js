@@ -38,10 +38,10 @@ class Nav extends Component {
               leaderboard
             </NavLink>
           </li>
-          <li>
+          <li style={{color:"red",paddingLeft:"20px"}}>
             Hello, {authUser.name}
           </li>
-          <li>
+          <li className="right">
             <Link to='/' onClick={this.logout}>LOGOUT</Link>
           </li>
         </ul>

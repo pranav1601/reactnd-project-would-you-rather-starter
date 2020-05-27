@@ -50,7 +50,7 @@ class NewQuestion extends Component{
         return(
             <div className="center">
                 <h3>Would You rather</h3>
-                <form className="tweet-info" onSubmit={this.onQuestionSubmit}>
+                <form className="question-info" onSubmit={this.onQuestionSubmit}>
                     <label>
                     <textarea
                         name="optionOne"
@@ -59,17 +59,17 @@ class NewQuestion extends Component{
                         onChange={this.onOptionChangeOne}
                         placeholder="Enter option one"/>
                     </label>
-                    <h3>OR</h3>
+                    <h3 style={{color:"red"}}>OR</h3>
                     <label>
                     <textarea
                         name="optionTwo"
                         value={this.state.optionTwo}
                         className="textarea"
                         onChange={this.onOptionChangeTwo}
-                        placeholder="Enter option one"/>
+                        placeholder="Enter option two"/>
                     </label>
                     
-                    <button>Submit Question?</button>
+                    <button className="btn">Submit Question?</button>
                 </form>
             </div>
         )

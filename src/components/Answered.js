@@ -8,7 +8,7 @@ class Answered extends Component{
     
 
     render(){
-        const {question,optionOneSelected,optionTwoSelected}=this.props
+        const {question,optionOneSelected,optionTwoSelected,user}=this.props
         
         const{
             author,
@@ -19,34 +19,32 @@ class Answered extends Component{
         }=question
         const votesOne=optionOne.votes.length
         const votesTwo=optionTwo.votes.length
-        const totalVotes=votesOne+votesTwo   
-        console.log('hello1',optionOneSelected)
-        console.log('hello2',optionTwoSelected)
+        const totalVotes=votesOne+votesTwo
         return(
-            <div className='tweet'>
-                
+            <div className='question'>
                 <img
-                src='https://w7.pngwing.com/pngs/931/256/png-transparent-bitstrips-avatar-emoji-graphy-emoticon-avatar-face-heroes-photography.png'
-                alt={`Avatar of ${author}`}
+                src={user.avatarURL}
+                alt={`Avatar of ${user.name}`}
                 className='avatar'
                 />
-                <div className='tweet-info'>
+                <div className='question-info'>
                     <div>
                         <div>{formatDate(timestamp)}</div>
-                        <span>{author} asks:</span>
+                        <span>{user.name} asks:</span>
                     </div>
                 </div>
                 <div className="center" style={{flexDirection:"column"}}>
                     <h2>Would You Rather</h2>
                     <div className={optionOneSelected?'selected':null}>
-                        {optionOneSelected && (<p style={{fontSize:"15px", alignItems:"left", padding:"5px"}}>Selected:</p>)}
+                        {optionOneSelected && (<p style={{fontSize:"15px", alignItems:"left", padding:"5px",color:"green"}}>Selected:</p>)}
                         
                         <p style={{padding:"10px"}}>{optionOne.text}</p>
                         <p>{Math.round((votesOne/totalVotes)*100)}%, {votesOne} out of {totalVotes}</p>    
                     </div>
+                    <p style={{color:"red", fontWeight:"bold"}}>OR</p>
                     <div className={optionTwoSelected?'selected':null}>
-                        {optionTwoSelected && (<p style={{fontSize:"15px", alignItems:"left", padding:"5px"}}>Selected:</p>)}
-                        <p style={{color:"red", fontWeight:"bold"}}>OR</p>
+                        
+                        {optionTwoSelected && (<p style={{fontSize:"15px", alignItems:"left", padding:"5px",color:"green", fontWeight:"bold"}}>Selected:</p>)}
                         <p>{optionTwo.text}</p>
                         <p>{Math.round((votesTwo/totalVotes)*100)}%, {votesTwo} out of {totalVotes}</p> 
                     </div>

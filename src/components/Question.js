@@ -3,18 +3,16 @@ import {connect} from 'react-redux'
 import Unanswered from './Unanswered'
 import Answered from './Answered'
 import { Redirect } from 'react-router'
+import DemoQuestion from './DemoQuestion'
 
 class Question extends Component{
     render(){
-        console.log(this.props)
         const {question,id,answered}=this.props
-        console.log(answered)
-        console.log('question',!question)
         if(!question){
             return <Redirect to='/notfound'/>
         }
         return(
-            <div>
+            <div className="center">
                 {(answered===true)?
                     <Answered id={id}/>
                     :
